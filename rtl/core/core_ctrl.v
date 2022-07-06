@@ -86,7 +86,7 @@ and a9(auipc_format,  ~opcode[6], ~opcode[5],  opcode[4], ~opcode[3],  opcode[2]
 assign idx_src = jalr_format;
 assign alu_op = {i_format, r_format};
 or o1(alu_src, i_format, load_format, store_format);
-assign mem_read = load_format;
+assign mem_read = load_format | store_format;
 assign mem_write = store_format;
 assign mem2reg[2] = opcode[5];
 assign mem2reg[1] = opcode[2];

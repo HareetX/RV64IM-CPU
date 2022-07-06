@@ -41,8 +41,8 @@ MuxKey #(7, 3, DATA_LEN) u_MuxKey_read(
     .key (read_type ),
     .lut ({
         3'd0, {{56{r_data_tmp[7]}}, r_data_tmp[7:0]},
-        3'd1, {{48{r_data_tmp[7]}}, r_data_tmp[15:0]},
-        3'd2, {{32{r_data_tmp[7]}}, r_data_tmp[31:0]},
+        3'd1, {{48{r_data_tmp[15]}}, r_data_tmp[15:0]},
+        3'd2, {{32{r_data_tmp[31]}}, r_data_tmp[31:0]},
         3'd3, r_data_tmp[63:0],
         3'd4, {56'b0, r_data_tmp[7:0]},
         3'd5, {48'b0, r_data_tmp[15:0]},
