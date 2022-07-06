@@ -1,0 +1,466 @@
+make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make.exe: *** No rule to make target 'all'.  Stop.
+
+# GNU Make 4.2.1
+# Built for x86_64-w64-mingw32
+# Copyright (C) 1988-2016 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Wed Jul 06 15:15:19 2022
+
+# Variables
+
+# 'override' directive
+GNUMAKEFLAGS := 
+# automatic
+<D = $(patsubst %/,%,$(patsubst %\,%,$(dir $<)))
+# automatic
+?F = $(notdir $?)
+# default
+.SHELLFLAGS := -c
+# makefile
+MAKEFLAGS = pqrR
+# environment
+VSCODE_LOG_NATIVE = false
+# automatic
+?D = $(patsubst %/,%,$(patsubst %\,%,$(dir $?)))
+# automatic
+@D = $(patsubst %/,%,$(patsubst %\,%,$(dir $@)))
+# environment
+HOMEDRIVE = C:
+# automatic
+@F = $(notdir $@)
+# automatic
+^D = $(patsubst %/,%,$(patsubst %\,%,$(dir $^)))
+# makefile
+CURDIR := d:/VirtualMachines/share_dir/riscv-fpl-cpu
+# default
+SHELL := sh.exe
+# environment
+WINDIR = C:\WINDOWS
+# environment
+VSCODE_NLS_CONFIG = {"locale":"zh-cn","availableLanguages":{},"_languagePackSupport":true}
+# makefile (from 'Makefile', line 12)
+MEMS = $(wildcard $(RTL_MEMS_PATH)/*.v)
+# environment
+ONEDRIVE = C:\Users\riscvlab\OneDrive
+# environment
+PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# environment
+TMP = C:\Users\riscvlab\AppData\Local\Temp
+# makefile (from 'Makefile', line 17)
+TOP = soc_tb
+# makefile (from 'Makefile', line 11)
+GENERAL = $(wildcard $(RTL_GENERAL_PATH)/gnl_ff_module.v) $(wildcard $(RTL_GENERAL_PATH)/gnl_mux_module.v)
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# makefile (from 'Makefile', line 18)
+OUT_FILE = ./build/a.out
+# environment
+PROGRAMW6432 = C:\Program Files
+# environment
+PROGRAMDATA = C:\ProgramData
+# environment
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-2fc8dfc1-5e1e-49a6-bebc-737d165d45c2-sock
+# environment
+VSCODE_CWD = D:\Microsoft VS Code
+# makefile (from 'Makefile', line 1)
+RTL_CORE_PATH = ./rtl/core
+# default
+MAKE_HOST := x86_64-w64-mingw32
+# environment
+PATH = D:\VMware\VMware Workstation\bin\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\vscTool\mingw64\bin;D:\vscTool\ctags;D:\vscTool\iverilog\bin;D:\vscTool\iverilog\gtkwave\bin;D:\vscTool\MinGW\msys\1.0\bin;E:\Xilinx\Vivado\2022.1\bin;D:\Git\cmd;C:\Users\riscvlab\AppData\Local\Microsoft\WindowsApps;D:\Microsoft VS Code\bin;D:\vscTool\mingw64\bin;D:\vscTool\ctags;D:\vscTool\iverilog\bin;D:\vscTool\iverilog\gtkwave\bin;D:\vscTool\MinGW\msys\1.0\bin;
+# environment
+COMMONPROGRAMW6432 = C:\Program Files\Common Files
+# makefile (from 'Makefile', line 15)
+TESTBENCH = $(wildcard $(TESTBENCH_PATH)/*.v)
+# environment
+PROCESSOR_ARCHITECTURE = AMD64
+# environment
+USERPROFILE = C:\Users\riscvlab
+# environment
+ALLUSERSPROFILE = C:\ProgramData
+# environment
+VSCODE_LOG_STACK = false
+# environment
+NUMBER_OF_PROCESSORS = 20
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync
+# automatic
+%F = $(notdir $%)
+# environment
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_12016_KHATUIAIEUQJULRX
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+COMPUTERNAME = DESKTOP-R2U4S9P
+# environment
+PROGRAMFILES = C:\Program Files
+# default
+.LOADED := 
+# environment
+DRIVERDATA = C:\Windows\System32\Drivers\DriverData
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+USERNAME = riscvlab
+# environment
+PUBLIC = C:\Users\Public
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# makefile (from 'Makefile', line 8)
+DEFINES = ./rtl/defines.v
+# environment
+VSCODE_CODE_CACHE_PATH = C:\Users\riscvlab\AppData\Roaming\Code\CachedData\30d9c6cd9483b2cc586687151bcbcd635f373630
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+COMMONPROGRAMFILES = C:\Program Files\Common Files
+# environment
+LOGONSERVER = \\DESKTOP-R2U4S9P
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# environment
+USERDOMAIN = DESKTOP-R2U4S9P
+# makefile (from 'Makefile', line 6)
+TESTBENCH_PATH = ./tb
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# makefile (from 'Makefile', line 2)
+RTL_GENERAL_PATH = ./rtl/general
+# default
+MAKE_VERSION := 4.2.1
+# makefile
+.DEFAULT_GOAL := run
+# makefile (from 'Makefile', line 3)
+RTL_MEMS_PATH = ./rtl/mems
+# environment
+PROGRAMFILES(X86) = C:\Program Files (x86)
+# automatic
+%D = $(patsubst %/,%,$(patsubst %\,%,$(dir $%)))
+# environment
+LOCALAPPDATA = C:\Users\riscvlab\AppData\Local
+# environment
+PSMODULEPATH = C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules
+# default
+MAKE_COMMAND := make.exe
+# makefile (from 'Makefile', line 13)
+SOC = $(wildcard $(RTL_SOC_PATH)/*.v)
+# default
+.VARIABLES := 
+# automatic
+*F = $(notdir $*)
+# environment
+PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 151 Stepping 2, GenuineIntel
+# environment
+OS = Windows_NT
+# environment
+VSCODE_IPC_HOOK = \\.\pipe\74ae9e3491549c3250ac346185dda42e-1.68.1-main-sock
+# environment
+HOMEPATH = \Users\riscvlab
+# environment
+COMMONPROGRAMFILES(X86) = C:\Program Files (x86)\Common Files
+# environment
+PROMPT = $P$G
+# environment
+MFLAGS = -pqrR
+# automatic
+*D = $(patsubst %/,%,$(patsubst %\,%,$(dir $*)))
+# environment
+SYSTEMROOT = C:\WINDOWS
+# automatic
++D = $(patsubst %/,%,$(patsubst %\,%,$(dir $+)))
+# automatic
++F = $(notdir $+)
+# environment
+APPDATA = C:\Users\riscvlab\AppData\Roaming
+# environment
+TEMP = C:\Users\riscvlab\AppData\Local\Temp
+# environment
+COMSPEC = C:\WINDOWS\system32\cmd.exe
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# environment
+LC_ALL = C
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# environment
+SYSTEMDRIVE = C:
+# environment
+SESSIONNAME = Console
+# environment
+PROCESSOR_REVISION = 9702
+# makefile (from 'Makefile', line 10)
+CORE = $(wildcard $(RTL_CORE_PATH)/*.v)
+# default
+.RECIPEPREFIX := 
+# environment
+LANG = C
+# environment
+PROCESSOR_LEVEL = 6
+# makefile (from 'Makefile', line 4)
+RTL_SOC_PATH = ./rtl/soc
+# environment
+VSCODE_PID = 12016
+# environment
+USERDOMAIN_ROAMINGPROFILE = DESKTOP-R2U4S9P
+# variable set hash-table stats:
+# Load=103/1024=10%, Rehash=0, Collisions=15/136=11%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# ./tb (key d:/VirtualMachines/share_dir/riscv-fpl-cpu/tb, mtime 1656916676): 3 files, no impossibilities.
+# . (key d:/VirtualMachines/share_dir/riscv-fpl-cpu, mtime 1657019482): 8 files, no impossibilities.
+# ./rtl/soc (key d:/VirtualMachines/share_dir/riscv-fpl-cpu/rtl/soc, mtime 1656472175): 3 files, no impossibilities.
+# ./rtl/mems (key d:/VirtualMachines/share_dir/riscv-fpl-cpu/rtl/mems, mtime 1656472175): 6 files, no impossibilities.
+# ./rtl/core (key d:/VirtualMachines/share_dir/riscv-fpl-cpu/rtl/core, mtime 1656918416): 18 files, no impossibilities.
+
+# 38 files, no impossibilities in 5 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+# Not a target:
+rtl/core/core_pc_reg.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+rtl/mems/ram_top.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+rtl/core/core_alu.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+wave: build/wave.vcd
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 28):
+	gtkwave build/wave.vcd
+
+# Not a target:
+all:
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+
+# Not a target:
+rtl/core/core_ex_mem.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+.PHONY: wave clean
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+rtl/defines.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+rtl/mems/rom.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+rtl/core/core_ctrl.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+rtl/core/core_mem_wb.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-04 20:30:53
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+rtl/general/gnl_ff_module.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+rtl/mems/ram.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+rtl/core/core_exu.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+rtl/core/core.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/wave.vcd:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+tb/soc_tb.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+run: rtl/defines.v rtl/general/gnl_ff_module.v rtl/general/gnl_mux_module.v rtl/core/core_idu.v rtl/core/core_ex_mem.v rtl/core/core_pc_reg.v rtl/core/core_mem.v rtl/core/core_imm.v rtl/core/core_alu_ctrl.v rtl/core/core_alu.v rtl/core/core_if_id.v rtl/core/core_wb.v rtl/core/core_exu.v rtl/core/core_id_ex.v rtl/core/core_ifu.v rtl/core/core_ctrl.v rtl/core/core_mem_wb.v rtl/core/core.v rtl/core/core_regfile.v rtl/mems/ram_top.v rtl/mems/rom_top.v rtl/mems/ram.v rtl/mems/rom.v rtl/soc/soc_top.v tb/soc_tb.v
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 21):
+	-md build
+	iverilog -I ./rtl -o $(OUT_FILE) $(DEFINES) $(GENERAL) $(CORE) $(MEMS) $(SOC) $(TESTBENCH)
+	vvp -n $(OUT_FILE)
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 31):
+	-$(shell powershell rm -r build)
+
+# Not a target:
+rtl/general/gnl_mux_module.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+rtl/core/core_if_id.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+rtl/core/core_ifu.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+rtl/core/core_idu.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+rtl/core/core_alu_ctrl.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+rtl/mems/rom_top.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+rtl/soc/soc_top.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+rtl/core/core_wb.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+rtl/core/core_id_ex.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+rtl/core/core_regfile.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+rtl/core/core_mem.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+rtl/core/core_imm.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# files hash-table stats:
+# Load=34/1024=3%, Rehash=0, Collisions=0/74=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 67 / storage = 894 B / avg = 13 B
+# current buf: size = 8162 B / used = 894 B / count = 67 / avg = 13 B
+
+# strcache performance: lookups = 84 / hit rate = 20%
+# hash-table stats:
+# Load=67/8192=1%, Rehash=0, Collisions=6/84=7%
+# Finished Make data base on Wed Jul 06 15:15:19 2022
+
+ 
