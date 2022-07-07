@@ -155,28 +155,28 @@ wire                          wbu_reg_write;
 wire [2:0]                    wbu_mem2reg;
 
 core_ifu u_core_ifu(
-    .pc_idx        (ifu_pc_addr        ),
-    .instr_fetched (ifu_instr_fetched  ),
-
-    .pc_o          (if2id_pc_i         ),
-    .instr_o       (if2id_instr_i      ),
-
-    .pc_branch     (id2if_pc_branch    ),
-    
-    .pc_wen        (1'b1               ),//
-    .pc_src        (ifu_pc_src         ),
-
-    .clk           (clk                ),
-    .rst_n         (rst_n              )
+    .pc_idx        (ifu_pc_addr         ),
+    .instr_fetched (ifu_instr_fetched   ),
+ 
+    .pc_o          (if2id_pc_i          ),
+    .instr_o       (if2id_instr_i       ),
+ 
+    .pc_branch     (id2if_pc_branch     ),
+     
+    .pc_wen        (1'b1                ),//
+    .pc_src        (ifu_pc_src          ),
+ 
+    .clk           (clk                 ),
+    .rst_n         (rst_n               )
 );
 
 core_if_id u_core_if_id(
-    .pc_i    (if2id_pc_i    ),
-    .instr_i (if2id_instr_i ),
-    .pc_o    (if2id_pc_o    ),
-    .instr_o (if2id_instr_o ),
-    .clk     (clk           ),
-    .rst_n   (rst_n         )
+    .pc_i    (if2id_pc_i          ),
+    .instr_i (if2id_instr_i       ),
+    .pc_o    (if2id_pc_o          ),
+    .instr_o (if2id_instr_o       ),
+    .clk     (clk                 ),
+    .rst_n   (rst_n & ~ifu_pc_src )
 );
 
 

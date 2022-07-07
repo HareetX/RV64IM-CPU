@@ -8,7 +8,7 @@ make.exe: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Jul 06 15:15:19 2022
+# Make data base, printed on Thu Jul 07 13:14:06 2022
 
 # Variables
 
@@ -51,6 +51,8 @@ PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
 # makefile (from 'Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
 # environment
+FPS_BROWSER_USER_PROFILE_STRING = Default
+# environment
 TMP = C:\Users\riscvlab\AppData\Local\Temp
 # makefile (from 'Makefile', line 17)
 TOP = soc_tb
@@ -65,7 +67,7 @@ PROGRAMW6432 = C:\Program Files
 # environment
 PROGRAMDATA = C:\ProgramData
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-2fc8dfc1-5e1e-49a6-bebc-737d165d45c2-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-14398bc5-2865-4208-8f34-14aab157a5cc-sock
 # environment
 VSCODE_CWD = D:\Microsoft VS Code
 # makefile (from 'Makefile', line 1)
@@ -95,7 +97,7 @@ ELECTRON_RUN_AS_NODE = 1
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_12016_KHATUIAIEUQJULRX
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_9576_VYCYQFMUQZFYZIKW
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
@@ -212,14 +214,16 @@ CORE = $(wildcard $(RTL_CORE_PATH)/*.v)
 LANG = C
 # environment
 PROCESSOR_LEVEL = 6
+# environment
+FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
 # makefile (from 'Makefile', line 4)
 RTL_SOC_PATH = ./rtl/soc
 # environment
-VSCODE_PID = 12016
+VSCODE_PID = 9576
 # environment
 USERDOMAIN_ROAMINGPROFILE = DESKTOP-R2U4S9P
 # variable set hash-table stats:
-# Load=103/1024=10%, Rehash=0, Collisions=15/136=11%
+# Load=105/1024=10%, Rehash=0, Collisions=15/138=11%
 
 # Pattern-specific Variable Values
 
@@ -228,12 +232,12 @@ USERDOMAIN_ROAMINGPROFILE = DESKTOP-R2U4S9P
 # Directories
 
 # ./tb (key d:/VirtualMachines/share_dir/riscv-fpl-cpu/tb, mtime 1656916676): 3 files, no impossibilities.
-# . (key d:/VirtualMachines/share_dir/riscv-fpl-cpu, mtime 1657019482): 8 files, no impossibilities.
+# . (key d:/VirtualMachines/share_dir/riscv-fpl-cpu, mtime 1657095998): 9 files, no impossibilities.
 # ./rtl/soc (key d:/VirtualMachines/share_dir/riscv-fpl-cpu/rtl/soc, mtime 1656472175): 3 files, no impossibilities.
 # ./rtl/mems (key d:/VirtualMachines/share_dir/riscv-fpl-cpu/rtl/mems, mtime 1656472175): 6 files, no impossibilities.
 # ./rtl/core (key d:/VirtualMachines/share_dir/riscv-fpl-cpu/rtl/core, mtime 1656918416): 18 files, no impossibilities.
 
-# 38 files, no impossibilities in 5 directories.
+# 39 files, no impossibilities in 5 directories.
 
 # Implicit Rules
 
@@ -455,12 +459,12 @@ rtl/core/core_imm.v:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 67 / storage = 894 B / avg = 13 B
-# current buf: size = 8162 B / used = 894 B / count = 67 / avg = 13 B
+# strcache buffers: 1 (0) / strings = 68 / storage = 899 B / avg = 13 B
+# current buf: size = 8162 B / used = 899 B / count = 68 / avg = 13 B
 
-# strcache performance: lookups = 84 / hit rate = 20%
+# strcache performance: lookups = 85 / hit rate = 20%
 # hash-table stats:
-# Load=67/8192=1%, Rehash=0, Collisions=6/84=7%
-# Finished Make data base on Wed Jul 06 15:15:19 2022
+# Load=68/8192=1%, Rehash=0, Collisions=6/85=7%
+# Finished Make data base on Thu Jul 07 13:14:06 2022
 
  

@@ -12,8 +12,8 @@
 `define OPERAND_WIDTH     64
 `define ALU_CTRL_WIDTH    5
 // rom
-`define ROM_DATA_NUM      32
-`define ROM_DATA_IDXLEN   5 + 5 - 3
+`define ROM_DATA_NUM      256
+`define ROM_DATA_IDXLEN   8 + 5 - 3
 // ram
 `define RAM_DATA_NUM      32
 `define RAM_DATA_IDXLEN   5 + 6
