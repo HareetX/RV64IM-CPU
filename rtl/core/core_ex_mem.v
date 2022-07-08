@@ -12,6 +12,8 @@ module core_ex_mem (
     input  [`OPERAND_WIDTH-1:0]   rs2_data_i,
 
     input  [`OPERAND_WIDTH-1:0]   alu_i,
+
+    input  [`CPU_PC_SIZE-1:0]     pc_offset_result_i,
     
     // control signals
     input                         mem_read_i,
@@ -20,7 +22,7 @@ module core_ex_mem (
     input  [1:0]                  write_type_i,
 
     input                         reg_write_i,
-    input  [2:0]                  mem2reg_i,
+    input  [1:0]                  mem2reg_i,
 
     /* output_port */
     // main signals
@@ -33,6 +35,8 @@ module core_ex_mem (
     output [`OPERAND_WIDTH-1:0]   rs2_data_o,
 
     output [`OPERAND_WIDTH-1:0]   alu_o,
+
+    output [`CPU_PC_SIZE-1:0]     pc_offset_result_o,
     
     // control signals
     output                        mem_read_o,
@@ -41,7 +45,7 @@ module core_ex_mem (
     output [1:0]                  write_type_o,
 
     output                        reg_write_o,
-    output [2:0]                  mem2reg_o,
+    output [1:0]                  mem2reg_o,
 
     /* control_signals */
 
@@ -51,7 +55,7 @@ module core_ex_mem (
 );
 
 parameter MEM_CTRL_LEN = 1 + 1 + 3 + 2;
-parameter WB_CTRL_LEN  = 1 + 3;
+parameter WB_CTRL_LEN  = 1 + 2;
 
 Reg #(`CPU_PC_SIZE, 0) u_Reg_pc(
     .clk  (clk     ),
@@ -99,6 +103,14 @@ Reg #(`OPERAND_WIDTH, 0) u_Reg_alu(
     .din  (alu_i    ),
     .dout (alu_o    ),
     .wen  (1'b1     )
+);
+
+Reg #(`CPU_PC_SIZE, 0) u_Reg_pc_offset_result(
+    .clk  (clk                   ),
+    .rst  (~rst_n                ),
+    .din  (pc_offset_result_i    ),
+    .dout (pc_offset_result_o    ),
+    .wen  (1'b1                  )
 );
 
 Reg #(MEM_CTRL_LEN, 0) u_Reg_mem_ctrl(

@@ -21,6 +21,7 @@ module core_id_ex (
     input  [1:0]                  alu_op_i,
     input                         alu_src_i,
     input                         alu_w_sext_i,
+    input                         pc_oprd_src_i,
 
     input                         mem_read_i,
     input                         mem_write_i,
@@ -28,7 +29,7 @@ module core_id_ex (
     input  [1:0]                  write_type_i,
 
     input                         reg_write_i,
-    input  [2:0]                  mem2reg_i,
+    input  [1:0]                  mem2reg_i,
 
     /* output_port */
     // main signals
@@ -49,6 +50,7 @@ module core_id_ex (
     output [1:0]                  alu_op_o,
     output                        alu_src_o,
     output                        alu_w_sext_o,
+    output                        pc_oprd_src_o,
 
     output                        mem_read_o,
     output                        mem_write_o,
@@ -56,7 +58,7 @@ module core_id_ex (
     output [1:0]                  write_type_o,
 
     output                        reg_write_o,
-    output [2:0]                  mem2reg_o,
+    output [1:0]                  mem2reg_o,
 
     /* control_signals */
 
@@ -65,9 +67,9 @@ module core_id_ex (
     input                         rst_n
 );
 
-parameter EX_CTRL_LEN  = 2 + 1 + 1;
+parameter EX_CTRL_LEN  = 2 + 1 + 1 + 1;
 parameter MEM_CTRL_LEN = 1 + 1 + 3 + 2;
-parameter WB_CTRL_LEN  = 1 + 3;
+parameter WB_CTRL_LEN  = 1 + 2;
 
 Reg #(`CPU_PC_SIZE, 0) u_Reg_pc(
     .clk  (clk     ),
@@ -155,12 +157,14 @@ Reg #(EX_CTRL_LEN, 0) u_Reg_ex_ctrl(
     .din  ({
         alu_op_i,
         alu_src_i,
-        alu_w_sext_i
+        alu_w_sext_i,
+        pc_oprd_src_i
     }    ),
     .dout ({
         alu_op_o,
         alu_src_o,
-        alu_w_sext_o
+        alu_w_sext_o,
+        pc_oprd_src_o
     }    ),
     .wen  (1'b1    )
 );

@@ -52,6 +52,8 @@ module core_exu (
     output [`OPERAND_WIDTH-1:0] rs2_data_o,
     
     output [`OPERAND_WIDTH-1:0] alu_o,
+
+    output [`CPU_PC_SIZE-1:0] pc_offset_result_o,
     // to Hazard_Detection_Unit
     output [`CPU_RFIDX_WIDTH-1:0] ex2hdu_rsd_idx_o,
     // to Forwarding_Unit
@@ -62,6 +64,7 @@ module core_exu (
     input  [1:0] alu_op,
     input  alu_src,
     input  w_sext,
+    input  pc_oprd_src,
 
     /* basic_signals */
     input clk,
@@ -69,10 +72,22 @@ module core_exu (
 );
 
 wire [`OPERAND_WIDTH-1:0] oprd2;
+wire [`OPERAND_WIDTH-1:0] pc_oprd;
 wire [`ALU_CTRL_WIDTH-1:0] alu_ctrl;
 
 wire [`OPERAND_WIDTH-1:0] alu_result;
 wire [`OPERAND_WIDTH-1:0] alu_w_sext;
+
+MuxKey #(2, 1, `OPERAND_WIDTH) u_MuxKey_pc_oprd(
+    .out (pc_oprd     ),
+    .key (pc_oprd_src ),
+    .lut ({
+        1'b0, imm_i,
+        1'b1, `OPERAND_WIDTH'd4
+    } )
+);
+
+assign pc_offset_result_o = pc_i + pc_oprd;
 
 MuxKey #(2, 1, `OPERAND_WIDTH) u_MuxKey_alu_src(
     .out (oprd2   ),

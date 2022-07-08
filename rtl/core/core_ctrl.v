@@ -14,6 +14,7 @@ module core_ctrl (
     output [1:0] alu_op,
     output alu_src,
     output alu_w_sext,
+    output pc_oprd_src,
     // use in MEM
     output mem_read,
     output mem_write,
@@ -21,7 +22,7 @@ module core_ctrl (
     output [1:0] write_type,
     // use in WB
     output reg_write,
-    output [2:0] mem2reg
+    output [1:0] mem2reg
     
 );
 
@@ -88,7 +89,7 @@ assign alu_op = {i_format, r_format};
 or o1(alu_src, i_format, load_format, store_format);
 assign mem_read = load_format | store_format;
 assign mem_write = store_format;
-assign mem2reg[2] = opcode[5];
+assign pc_oprd_src = opcode[5];
 assign mem2reg[1] = opcode[2];
 or o2(mem2reg[0], load_format, jal_format, jalr_format, auipc_format);
 or o3(reg_write, r_format, i_format, load_format, jal_format, jalr_format, lui_format, auipc_format);
