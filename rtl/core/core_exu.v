@@ -27,33 +27,34 @@ module core_exu (
     /* reg_signals */
     // input
     // from ID/EX_Register
-    input  [`CPU_PC_SIZE-1:0] pc_i,
-    input  [`CPU_INSTR_SIZE-1:0] instr_i,
-    input  [`OPERAND_WIDTH-1:0] imm_i,
-    input  [6:0] funct7_i,
-    input  [2:0] funct3_i,
+    input  [`CPU_PC_SIZE-1:0]     pc_i,
+    input  [`CPU_INSTR_SIZE-1:0]  instr_i,
+    input  [`CPU_PC_SIZE-1:0]     snpc_i,
+    input  [`OPERAND_WIDTH-1:0]   imm_i,
+    input  [6:0]                  funct7_i,
+    input  [2:0]                  funct3_i,
     
     input  [`CPU_RFIDX_WIDTH-1:0] rsd_idx_i,
     
     input  [`CPU_RFIDX_WIDTH-1:0] rs1_idx_i,
     input  [`CPU_RFIDX_WIDTH-1:0] rs2_idx_i,    
 
-    input  [`OPERAND_WIDTH-1:0] rs1_data_i,
-    input  [`OPERAND_WIDTH-1:0] rs2_data_i,
+    input  [`OPERAND_WIDTH-1:0]   rs1_data_i,
+    input  [`OPERAND_WIDTH-1:0]   rs2_data_i,
 
     // output
     // to EX/MEM_Register
-    output [`CPU_PC_SIZE-1:0] pc_o,
-    output [`CPU_INSTR_SIZE-1:0] instr_o,
-    output [`OPERAND_WIDTH-1:0] imm_o,
+    output [`CPU_PC_SIZE-1:0]     pc_o,
+    output [`CPU_INSTR_SIZE-1:0]  instr_o,
+    output [`CPU_PC_SIZE-1:0]     snpc_o,
+    output [`OPERAND_WIDTH-1:0]   imm_o,
     
     output [`CPU_RFIDX_WIDTH-1:0] ex2mem_rsd_idx_o,
 
-    output [`OPERAND_WIDTH-1:0] rs2_data_o,
+    output [`OPERAND_WIDTH-1:0]   rs2_data_o,
     
-    output [`OPERAND_WIDTH-1:0] alu_o,
+    output [`OPERAND_WIDTH-1:0]   alu_o,
 
-    output [`CPU_PC_SIZE-1:0] pc_offset_result_o,
     // to Hazard_Detection_Unit
     output [`CPU_RFIDX_WIDTH-1:0] ex2hdu_rsd_idx_o,
     // to Forwarding_Unit
@@ -61,37 +62,35 @@ module core_exu (
     output [`CPU_RFIDX_WIDTH-1:0] rs2_idx_o, 
     
     /* control_signals */
-    input  [1:0] alu_op,
-    input  alu_src,
-    input  w_sext,
-    input  pc_oprd_src,
+    input  [1:0]                  alu_op,
+    input  [1:0]                  alu_src,
+    input                         w_sext,
+    input                         pc_oprd_src,
 
     /* basic_signals */
-    input clk,
-    input rst_n
+    input                         clk,
+    input                         rst_n
 );
 
-wire [`OPERAND_WIDTH-1:0] oprd2;
-wire [`OPERAND_WIDTH-1:0] pc_oprd;
+wire [`OPERAND_WIDTH-1:0]  oprd1;
+wire [`OPERAND_WIDTH-1:0]  oprd2;
 wire [`ALU_CTRL_WIDTH-1:0] alu_ctrl;
 
-wire [`OPERAND_WIDTH-1:0] alu_result;
-wire [`OPERAND_WIDTH-1:0] alu_w_sext;
+wire [`OPERAND_WIDTH-1:0]  alu_result;
+wire [`OPERAND_WIDTH-1:0]  alu_w_sext;
 
-MuxKey #(2, 1, `OPERAND_WIDTH) u_MuxKey_pc_oprd(
-    .out (pc_oprd     ),
-    .key (pc_oprd_src ),
+MuxKey #(2, 1, `OPERAND_WIDTH) u_MuxKey_alu_src_rs1(
+    .out (oprd1       ),
+    .key (alu_src[0]  ),
     .lut ({
-        1'b0, imm_i,
-        1'b1, `OPERAND_WIDTH'd4
+        1'b0, rs1_data_i,
+        1'b1, pc_i
     } )
 );
 
-assign pc_offset_result_o = pc_i + pc_oprd;
-
-MuxKey #(2, 1, `OPERAND_WIDTH) u_MuxKey_alu_src(
-    .out (oprd2   ),
-    .key (alu_src ),
+MuxKey #(2, 1, `OPERAND_WIDTH) u_MuxKey_alu_src_rs2(
+    .out (oprd2      ),
+    .key (alu_src[1] ),
     .lut ({
         1'b0, rs2_data_i,
         1'b1, imm_i
@@ -106,7 +105,7 @@ core_alu_ctrl u_core_alu_ctrl(
 );
 
 core_alu u_core_alu(
-    .oprd1      (rs1_data_i ),
+    .oprd1      (oprd1      ),
     .oprd2      (oprd2      ),
     .alu_ctrl_i (alu_ctrl   ),
     .alu_o      (alu_result )

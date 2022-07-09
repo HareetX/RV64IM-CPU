@@ -29,6 +29,8 @@ module core_idu (
     // from IF/ID_Register
     input  [`CPU_PC_SIZE-1:0]     pc_i,
     input  [`CPU_INSTR_SIZE-1:0]  instr_i,
+
+    input  [`CPU_PC_SIZE-1:0]     snpc_i,
     // from Register_File
     input  [`OPERAND_WIDTH-1:0]   rs1_data_i,
     input  [`OPERAND_WIDTH-1:0]   rs2_data_i,
@@ -37,6 +39,7 @@ module core_idu (
     // to ID/EX_Register
     output [`CPU_PC_SIZE-1:0]     pc_o,
     output [`CPU_INSTR_SIZE-1:0]  instr_o,
+    input  [`CPU_PC_SIZE-1:0]     snpc_o,
     output [`OPERAND_WIDTH-1:0]   imm_o,
     output [6:0]                  funt7_o,
     output [2:0]                  funt3_o,
@@ -91,6 +94,7 @@ MuxKey #(2, 1, `CPU_PC_SIZE) u_MuxKey(
 
 assign pc_o = pc_i;
 assign instr_o = instr_i;
+assign snpc_o = snpc_i;
 assign imm_o = imm_oprd;
 assign funt7_o = instr_i[31:25];
 assign funt3_o = instr_i[14:12];

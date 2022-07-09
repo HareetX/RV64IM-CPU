@@ -8,7 +8,7 @@ make.exe: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Jul 07 13:14:06 2022
+# Make data base, printed on Fri Jul 08 17:46:07 2022
 
 # Variables
 
@@ -22,8 +22,6 @@ GNUMAKEFLAGS :=
 .SHELLFLAGS := -c
 # makefile
 MAKEFLAGS = pqrR
-# environment
-VSCODE_LOG_NATIVE = false
 # automatic
 ?D = $(patsubst %/,%,$(patsubst %\,%,$(dir $?)))
 # automatic
@@ -58,16 +56,12 @@ TMP = C:\Users\riscvlab\AppData\Local\Temp
 TOP = soc_tb
 # makefile (from 'Makefile', line 11)
 GENERAL = $(wildcard $(RTL_GENERAL_PATH)/gnl_ff_module.v) $(wildcard $(RTL_GENERAL_PATH)/gnl_mux_module.v)
-# environment
-VSCODE_VERBOSE_LOGGING = true
 # makefile (from 'Makefile', line 18)
 OUT_FILE = ./build/a.out
 # environment
 PROGRAMW6432 = C:\Program Files
 # environment
 PROGRAMDATA = C:\ProgramData
-# environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-14398bc5-2865-4208-8f34-14aab157a5cc-sock
 # environment
 VSCODE_CWD = D:\Microsoft VS Code
 # makefile (from 'Makefile', line 1)
@@ -87,8 +81,6 @@ USERPROFILE = C:\Users\riscvlab
 # environment
 ALLUSERSPROFILE = C:\ProgramData
 # environment
-VSCODE_LOG_STACK = false
-# environment
 NUMBER_OF_PROCESSORS = 20
 # environment
 ELECTRON_RUN_AS_NODE = 1
@@ -97,9 +89,7 @@ ELECTRON_RUN_AS_NODE = 1
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_9576_VYCYQFMUQZFYZIKW
-# environment
-VSCODE_PIPE_LOGGING = true
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_15640_YQWEMVRMYHBDQOEP
 # environment
 COMPUTERNAME = DESKTOP-R2U4S9P
 # environment
@@ -119,7 +109,7 @@ VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # makefile (from 'Makefile', line 8)
 DEFINES = ./rtl/defines.v
 # environment
-VSCODE_CODE_CACHE_PATH = C:\Users\riscvlab\AppData\Roaming\Code\CachedData\30d9c6cd9483b2cc586687151bcbcd635f373630
+VSCODE_CODE_CACHE_PATH = C:\Users\riscvlab\AppData\Roaming\Code\CachedData\92d25e35d9bf1a6b16f7d0758f25d48ace11e5b9
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
@@ -167,7 +157,7 @@ PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 151 Stepping 2, GenuineIntel
 # environment
 OS = Windows_NT
 # environment
-VSCODE_IPC_HOOK = \\.\pipe\74ae9e3491549c3250ac346185dda42e-1.68.1-main-sock
+VSCODE_IPC_HOOK = \\.\pipe\74ae9e3491549c3250ac346185dda42e-1.69.0-main-sock
 # environment
 HOMEPATH = \Users\riscvlab
 # environment
@@ -219,11 +209,11 @@ FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
 # makefile (from 'Makefile', line 4)
 RTL_SOC_PATH = ./rtl/soc
 # environment
-VSCODE_PID = 9576
+VSCODE_PID = 15640
 # environment
 USERDOMAIN_ROAMINGPROFILE = DESKTOP-R2U4S9P
 # variable set hash-table stats:
-# Load=105/1024=10%, Rehash=0, Collisions=15/138=11%
+# Load=100/1024=10%, Rehash=0, Collisions=15/133=11%
 
 # Pattern-specific Variable Values
 
@@ -465,6 +455,6 @@ rtl/core/core_imm.v:
 # strcache performance: lookups = 85 / hit rate = 20%
 # hash-table stats:
 # Load=68/8192=1%, Rehash=0, Collisions=6/85=7%
-# Finished Make data base on Thu Jul 07 13:14:06 2022
+# Finished Make data base on Fri Jul 08 17:46:07 2022
 
  

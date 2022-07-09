@@ -47,16 +47,20 @@ module core (
 // IFU to IDU
 wire [`CPU_PC_SIZE-1:0]       if2id_pc_i;
 wire [`CPU_INSTR_SIZE-1:0]    if2id_instr_i;
+wire [`CPU_PC_SIZE-1:0]       if2id_snpc_i;
 wire [`CPU_PC_SIZE-1:0]       if2id_pc_o;
 wire [`CPU_INSTR_SIZE-1:0]    if2id_instr_o;
+wire [`CPU_PC_SIZE-1:0]       if2id_snpc_o;
 // IDU to EXU
 wire [`CPU_PC_SIZE-1:0]       id2ex_pc_i;
 wire [`CPU_INSTR_SIZE-1:0]    id2ex_instr_i;
+wire [`CPU_PC_SIZE-1:0]       id2ex_snpc_i;
 wire [`OPERAND_WIDTH-1:0]     id2ex_imm_i;
 wire [6:0]                    id2ex_funt7_i;
 wire [2:0]                    id2ex_funt3_i;
 wire [`CPU_PC_SIZE-1:0]       id2ex_pc_o;
 wire [`CPU_INSTR_SIZE-1:0]    id2ex_instr_o;
+wire [`CPU_PC_SIZE-1:0]       id2ex_snpc_o;
 wire [`OPERAND_WIDTH-1:0]     id2ex_imm_o;
 wire [6:0]                    id2ex_funt7_o;
 wire [2:0]                    id2ex_funt3_o;
@@ -76,9 +80,11 @@ wire [`OPERAND_WIDTH-1:0]     id2ex_rs2_data_o;
 // EXU to MEM
 wire [`CPU_PC_SIZE-1:0]       ex2mem_pc_i;
 wire [`CPU_INSTR_SIZE-1:0]    ex2mem_instr_i;
+wire [`CPU_PC_SIZE-1:0]       ex2mem_snpc_i;
 wire [`OPERAND_WIDTH-1:0]     ex2mem_imm_i;
 wire [`CPU_PC_SIZE-1:0]       ex2mem_pc_o;
 wire [`CPU_INSTR_SIZE-1:0]    ex2mem_instr_o;
+wire [`CPU_PC_SIZE-1:0]       ex2mem_snpc_o;
 wire [`OPERAND_WIDTH-1:0]     ex2mem_imm_o;
 
 wire [`CPU_RFIDX_WIDTH-1:0]   ex2mem_rsd_idx_i;
@@ -90,14 +96,16 @@ wire [`OPERAND_WIDTH-1:0]     ex2mem_rs2_data_o;
 wire [`OPERAND_WIDTH-1:0]     ex2mem_alu_i;
 wire [`OPERAND_WIDTH-1:0]     ex2mem_alu_o;
 
-wire [`CPU_PC_SIZE-1:0]       ex2mem_pc_offset_result_i;
-wire [`CPU_PC_SIZE-1:0]       ex2mem_pc_offset_result_o;
+
+
 // MEM to WB
 wire [`CPU_PC_SIZE-1:0]       mem2wb_pc_i;
 wire [`CPU_INSTR_SIZE-1:0]    mem2wb_instr_i;
+wire [`CPU_PC_SIZE-1:0]       mem2wb_snpc_i;
 wire [`OPERAND_WIDTH-1:0]     mem2wb_imm_i;
 wire [`CPU_PC_SIZE-1:0]       mem2wb_pc_o;
 wire [`CPU_INSTR_SIZE-1:0]    mem2wb_instr_o;
+wire [`CPU_PC_SIZE-1:0]       mem2wb_snpc_o;
 wire [`OPERAND_WIDTH-1:0]     mem2wb_imm_o;
 
 wire [`CPU_RFIDX_WIDTH-1:0]   mem2wb_rsd_idx_i;
@@ -105,9 +113,6 @@ wire [`CPU_RFIDX_WIDTH-1:0]   mem2wb_rsd_idx_o;
 
 wire [`OPERAND_WIDTH-1:0]     mem2wb_alu_i;
 wire [`OPERAND_WIDTH-1:0]     mem2wb_alu_o;
-
-wire [`CPU_PC_SIZE-1:0]       mem2wb_pc_offset_result_i;
-wire [`CPU_PC_SIZE-1:0]       mem2wb_pc_offset_result_o;
 
 wire [`OPERAND_WIDTH-1:0]     mem2wb_mem_data_i;
 wire [`OPERAND_WIDTH-1:0]     mem2wb_mem_data_o;
@@ -132,13 +137,11 @@ wire                          idu_idx_src;
 wire [2:0]                    idu_branch_judgment;
 
 wire [1:0]                    idu_alu_op;
-wire                          idu_alu_src;
+wire [1:0]                    idu_alu_src;
 wire                          idu_alu_w_sext;
-wire                          idu_pc_oprd_src;
 wire [1:0]                    exu_alu_op;
-wire                          exu_alu_src;
+wire [1:0]                    exu_alu_src;
 wire                          exu_alu_w_sext;
-wire                          exu_pc_oprd_src;
 
 wire                          idu_mem_read;
 wire                          idu_mem_write;
@@ -168,6 +171,8 @@ core_ifu u_core_ifu(
  
     .pc_o          (if2id_pc_i          ),
     .instr_o       (if2id_instr_i       ),
+
+    .snpc_o        (if2id_snpc_i        ),
  
     .pc_branch     (id2if_pc_branch     ),
      
@@ -181,8 +186,10 @@ core_ifu u_core_ifu(
 core_if_id u_core_if_id(
     .pc_i    (if2id_pc_i          ),
     .instr_i (if2id_instr_i       ),
+    .snpc_i  (if2id_snpc_i        ),
     .pc_o    (if2id_pc_o          ),
     .instr_o (if2id_instr_o       ),
+    .snpc_o  (if2id_snpc_o        ),
     .clk     (clk                 ),
     .rst_n   (rst_n & ~ifu_pc_src )
 );
@@ -191,12 +198,14 @@ core_if_id u_core_if_id(
 core_idu u_core_idu(
     .pc_i            (if2id_pc_o            ),
     .instr_i         (if2id_instr_o         ),
+    .snpc_i          (if2id_pc_o            ),
 
     .rs1_data_i      (rf2id_rs1_data        ),
     .rs2_data_i      (rf2id_rs2_data        ),
 
     .pc_o            (id2ex_pc_i            ),
     .instr_o         (id2ex_instr_i         ),
+    .snpc_o          (id2ex_snpc_i          ),
     .imm_o           (id2ex_imm_i           ),
     .funt7_o         (id2ex_funt7_i         ),
     .funt3_o         (id2ex_funt3_i         ),
@@ -225,6 +234,7 @@ core_idu u_core_idu(
 core_id_ex u_core_id_ex(
     .pc_i          (id2ex_pc_i         ),
     .instr_i       (id2ex_instr_i      ),
+    .snpc_i        (id2ex_snpc_i       ),
     .imm_i         (id2ex_imm_i        ),
     .funt7_i       (id2ex_funt7_i      ),
     .funt3_i       (id2ex_funt3_i      ),
@@ -236,7 +246,6 @@ core_id_ex u_core_id_ex(
     .alu_op_i      (idu_alu_op         ),
     .alu_src_i     (idu_alu_src        ),
     .alu_w_sext_i  (idu_alu_w_sext     ),
-    .pc_oprd_src_i (idu_pc_oprd_src    ),
     .mem_read_i    (idu_mem_read       ),
     .mem_write_i   (idu_mem_write      ),
     .read_type_i   (idu_read_type      ),
@@ -245,6 +254,7 @@ core_id_ex u_core_id_ex(
     .mem2reg_i     (idu_mem2reg        ),
     .pc_o          (id2ex_pc_o         ),
     .instr_o       (id2ex_instr_o      ),
+    .snpc_o        (id2ex_snpc_o       ),
     .imm_o         (id2ex_imm_o        ),
     .funt7_o       (id2ex_funt7_o      ),
     .funt3_o       (id2ex_funt3_o      ),
@@ -256,7 +266,6 @@ core_id_ex u_core_id_ex(
     .alu_op_o      (exu_alu_op         ),
     .alu_src_o     (exu_alu_src        ),
     .alu_w_sext_o  (exu_alu_w_sext     ),
-    .pc_oprd_src_o (exu_pc_oprd_src    ),
     .mem_read_o    (exu_mem_read       ),
     .mem_write_o   (exu_mem_write      ),
     .read_type_o   (exu_read_type      ),
@@ -271,6 +280,7 @@ core_id_ex u_core_id_ex(
 core_exu u_core_exu(
     .pc_i               (id2ex_pc_o               ),
     .instr_i            (id2ex_instr_o            ),
+    .snpc_i             (id2ex_snpc_o             ),
     .imm_i              (id2ex_imm_o              ),
     .funct7_i           (id2ex_funt7_o            ),
     .funct3_i           (id2ex_funt3_o            ),
@@ -285,6 +295,7 @@ core_exu u_core_exu(
 
     .pc_o               (ex2mem_pc_i              ),
     .instr_o            (ex2mem_instr_i           ),
+    .snpc_o             (ex2mem_snpc_i            ),
     .imm_o              (ex2mem_imm_i             ),
 
     .ex2mem_rsd_idx_o   (ex2mem_rsd_idx_i         ),
@@ -292,8 +303,6 @@ core_exu u_core_exu(
     .rs2_data_o         (ex2mem_rs2_data_i        ),
 
     .alu_o              (ex2mem_alu_i             ),
-
-    .pc_offset_result_o (ex2mem_pc_offset_result_i),
 
     .ex2hdu_rsd_idx_o   (ex2hdu_rsd_idx_o         ),//
 
@@ -303,7 +312,6 @@ core_exu u_core_exu(
     .alu_op             (exu_alu_op               ),
     .alu_src            (exu_alu_src              ),
     .w_sext             (exu_alu_w_sext           ),
-    .pc_oprd_src        (exu_pc_oprd_src          ),
 
     .clk                (clk                      ),
     .rst_n              (rst_n                    )
@@ -312,11 +320,11 @@ core_exu u_core_exu(
 core_ex_mem u_core_ex_mem(
     .pc_i               (ex2mem_pc_i               ),
     .instr_i            (ex2mem_instr_i            ),
+    .snpc_i             (ex2mem_snpc_i             ),
     .imm_i              (ex2mem_imm_i              ),
     .rsd_idx_i          (ex2mem_rsd_idx_i          ),
     .rs2_data_i         (ex2mem_rs2_data_i         ),
     .alu_i              (ex2mem_alu_i              ),
-    .pc_offset_result_i (ex2mem_pc_offset_result_i ),
     .mem_read_i         (exu_mem_read              ),
     .mem_write_i        (exu_mem_write             ),
     .read_type_i        (exu_read_type             ),
@@ -325,11 +333,11 @@ core_ex_mem u_core_ex_mem(
     .mem2reg_i          (exu_mem2reg               ),
     .pc_o               (ex2mem_pc_o               ),
     .instr_o            (ex2mem_instr_o            ),
+    .snpc_o             (ex2mem_snpc_o             ),
     .imm_o              (ex2mem_imm_o              ),
     .rsd_idx_o          (ex2mem_rsd_idx_o          ),
     .rs2_data_o         (ex2mem_rs2_data_o         ),
     .alu_o              (ex2mem_alu_o              ),
-    .pc_offset_result_o (ex2mem_pc_offset_result_o ),
     .mem_read_o         (mem_mem_read              ),
     .mem_write_o        (mem_mem_write             ),
     .read_type_o        (mem_read_type             ),
@@ -344,6 +352,7 @@ core_ex_mem u_core_ex_mem(
 core_mem u_core_mem(
     .pc_i               (ex2mem_pc_o               ),
     .instr_i            (ex2mem_instr_o            ),
+    .snpc_i             (ex2mem_snpc_o             ),
     .imm_i              (ex2mem_imm_o              ),
 
     .rsd_idx_i          (ex2mem_rsd_idx_o          ),
@@ -352,19 +361,16 @@ core_mem u_core_mem(
 
     .alu_i              (ex2mem_alu_o              ),
 
-    .pc_offset_result_i (ex2mem_pc_offset_result_o ),
-
     .mem_data_i         (mem_rdata                 ),
 
     .pc_o               (mem2wb_pc_i               ),
     .instr_o            (mem2wb_instr_i            ),
+    .snpc_o             (mem2wb_snpc_i             ),
     .imm_o              (mem2wb_imm_i              ),
 
     .rsd_idx_o          (mem2wb_rsd_idx_i          ),
 
     .mem2wb_alu_o       (mem2wb_alu_i              ),
-
-    .pc_offset_result_o (mem2wb_pc_offset_result_i ),
 
     .mem_data_o         (mem2wb_mem_data_i         ),
 
@@ -382,19 +388,19 @@ assign write_type = mem_write_type;
 core_mem_wb u_core_mem_wb(
     .pc_i               (mem2wb_pc_i               ),
     .instr_i            (mem2wb_instr_i            ),
+    .snpc_i             (mem2wb_snpc_i             ),
     .imm_i              (mem2wb_imm_i              ),
     .rsd_idx_i          (mem2wb_rsd_idx_i          ),
     .alu_i              (mem2wb_alu_i              ),
-    .pc_offset_result_i (mem2wb_pc_offset_result_i ),
     .mem_data_i         (mem2wb_mem_data_i         ),
     .reg_write_i        (mem_reg_write             ),
     .mem2reg_i          (mem_mem2reg               ),
     .pc_o               (mem2wb_pc_o               ),
     .instr_o            (mem2wb_instr_o            ),
+    .snpc_o             (mem2wb_snpc_o             ),
     .imm_o              (mem2wb_imm_o              ),
     .rsd_idx_o          (mem2wb_rsd_idx_o          ),
     .alu_o              (mem2wb_alu_o              ),
-    .pc_offset_result_o (mem2wb_pc_offset_result_o ),
     .mem_data_o         (mem2wb_mem_data_o         ),
     .reg_write_o        (wbu_reg_write             ),
     .mem2reg_o          (wbu_mem2reg               ),
@@ -406,11 +412,12 @@ core_mem_wb u_core_mem_wb(
 core_wb u_core_wb(
     .pc_i               (mem2wb_pc_o               ),
     .instr_i            (mem2wb_instr_o            ),
+    .snpc_i             (mem2wb_snpc_o             ),
     .imm_i              (mem2wb_imm_o              ),
 
     .rsd_idx_i          (mem2wb_rsd_idx_o          ),
     .alu_i              (mem2wb_alu_o              ),
-    .pc_offset_result_i (mem2wb_pc_offset_result_o ),
+    
     .mem_data_i         (mem2wb_mem_data_o         ),
 
     .rsd_idx_o          (wb2rf_rsd_idx             ),
@@ -446,7 +453,6 @@ core_ctrl u_core_ctrl(
     .alu_op          (idu_alu_op          ),
     .alu_src         (idu_alu_src         ),
     .alu_w_sext      (idu_alu_w_sext      ),
-    .pc_oprd_src     (idu_pc_oprd_src     ),
     .mem_read        (idu_mem_read        ),
     .mem_write       (idu_mem_write       ),
     .read_type       (idu_read_type       ),

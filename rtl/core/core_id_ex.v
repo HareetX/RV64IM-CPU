@@ -5,6 +5,7 @@ module core_id_ex (
     // main signals
     input  [`CPU_PC_SIZE-1:0]     pc_i,
     input  [`CPU_INSTR_SIZE-1:0]  instr_i,
+    input  [`CPU_PC_SIZE-1:0]     snpc_i,
     input  [`OPERAND_WIDTH-1:0]   imm_i,
     input  [6:0]                  funt7_i,
     input  [2:0]                  funt3_i,
@@ -19,7 +20,7 @@ module core_id_ex (
 
     // control signals
     input  [1:0]                  alu_op_i,
-    input                         alu_src_i,
+    input  [1:0]                  alu_src_i,
     input                         alu_w_sext_i,
     input                         pc_oprd_src_i,
 
@@ -35,6 +36,7 @@ module core_id_ex (
     // main signals
     output [`CPU_PC_SIZE-1:0]     pc_o,
     output [`CPU_INSTR_SIZE-1:0]  instr_o,
+    output [`CPU_PC_SIZE-1:0]     snpc_o,
     output [`OPERAND_WIDTH-1:0]   imm_o,
     output [6:0]                  funt7_o,
     output [2:0]                  funt3_o,
@@ -48,9 +50,8 @@ module core_id_ex (
     output [`OPERAND_WIDTH-1:0]   rs2_data_o,
     // control signals
     output [1:0]                  alu_op_o,
-    output                        alu_src_o,
+    output [1:0]                  alu_src_o,
     output                        alu_w_sext_o,
-    output                        pc_oprd_src_o,
 
     output                        mem_read_o,
     output                        mem_write_o,
@@ -67,7 +68,7 @@ module core_id_ex (
     input                         rst_n
 );
 
-parameter EX_CTRL_LEN  = 2 + 1 + 1 + 1;
+parameter EX_CTRL_LEN  = 2 + 2 + 1;
 parameter MEM_CTRL_LEN = 1 + 1 + 3 + 2;
 parameter WB_CTRL_LEN  = 1 + 2;
 
@@ -85,6 +86,14 @@ Reg #(`CPU_INSTR_SIZE, 0) u_Reg_instr(
     .din  (instr_i  ),
     .dout (instr_o  ),
     .wen  (1'b1     )
+);
+
+Reg #(`CPU_PC_SIZE, 0) u_Reg_snpc(
+    .clk  (clk     ),
+    .rst  (~rst_n  ),
+    .din  (snpc_i    ),
+    .dout (snpc_o    ),
+    .wen  (1'b1    )
 );
 
 Reg #(`OPERAND_WIDTH, 0) u_Reg_imm(
@@ -157,14 +166,12 @@ Reg #(EX_CTRL_LEN, 0) u_Reg_ex_ctrl(
     .din  ({
         alu_op_i,
         alu_src_i,
-        alu_w_sext_i,
-        pc_oprd_src_i
+        alu_w_sext_i
     }    ),
     .dout ({
         alu_op_o,
         alu_src_o,
-        alu_w_sext_o,
-        pc_oprd_src_o
+        alu_w_sext_o
     }    ),
     .wen  (1'b1    )
 );

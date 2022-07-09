@@ -32,6 +32,8 @@ module core_ifu (
     // output
     output [`CPU_PC_SIZE-1:0] pc_o,
     output [`CPU_INSTR_SIZE-1:0] instr_o,
+
+    output [`CPU_PC_SIZE-1:0] snpc_o,
     
     /* branch_pc_signal */
     input  [`CPU_PC_SIZE-1:0] pc_branch,
@@ -61,6 +63,7 @@ assign snpc = pc + 4;
 assign pc_idx = pc;
 assign pc_o = pc;
 assign instr_o = instr_fetched;
+assign snpc_o = snpc;
 
 MuxKey #(2, 1, `CPU_PC_SIZE) u_MuxKey(
 	.out (pc_next   ),

@@ -28,13 +28,12 @@ module core_wb (
     // input from MEM/WB_Register
     input  [`CPU_PC_SIZE-1:0]     pc_i,
     input  [`CPU_INSTR_SIZE-1:0]  instr_i,
+    input  [`CPU_PC_SIZE-1:0]     snpc_i,
     input  [`OPERAND_WIDTH-1:0]   imm_i,
   
     input  [`CPU_RFIDX_WIDTH-1:0] rsd_idx_i,
 
     input  [`OPERAND_WIDTH-1:0]   alu_i,
-
-    input  [`CPU_PC_SIZE-1:0]     pc_offset_result_i,
 
     input  [`OPERAND_WIDTH-1:0]   mem_data_i,
 
@@ -57,7 +56,7 @@ MuxKey #(4, 2, `OPERAND_WIDTH) u_MuxKey(
         2'b00, alu_i,
         2'b01, mem_data_i,
         2'b10, imm_i,
-        2'b11, pc_offset_result_i
+        2'b11, snpc_i
     } )
 );
 

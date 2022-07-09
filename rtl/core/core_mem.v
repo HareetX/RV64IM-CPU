@@ -29,6 +29,7 @@ module core_mem (
     // from EX/MEM_Register
     input  [`CPU_PC_SIZE-1:0]     pc_i,
     input  [`CPU_INSTR_SIZE-1:0]  instr_i,
+    input  [`CPU_PC_SIZE-1:0]     snpc_i,
     input  [`OPERAND_WIDTH-1:0]   imm_i,
     
     input  [`CPU_RFIDX_WIDTH-1:0] rsd_idx_i,
@@ -36,8 +37,6 @@ module core_mem (
     input  [`OPERAND_WIDTH-1:0]   rs2_data_i,
 
     input  [`OPERAND_WIDTH-1:0]   alu_i,
-
-    input  [`CPU_PC_SIZE-1:0]     pc_offset_result_i,
     // from Data_Memery
     input  [`OPERAND_WIDTH-1:0]   mem_data_i,
 
@@ -45,13 +44,12 @@ module core_mem (
     // to MEM/WB_Register
     output [`CPU_PC_SIZE-1:0]     pc_o,
     output [`CPU_INSTR_SIZE-1:0]  instr_o,
+    output [`CPU_PC_SIZE-1:0]     snpc_o,
     output [`OPERAND_WIDTH-1:0]   imm_o,
 
     output [`CPU_RFIDX_WIDTH-1:0] rsd_idx_o,
     
     output [`OPERAND_WIDTH-1:0]   mem2wb_alu_o,
-
-    output [`CPU_PC_SIZE-1:0]     pc_offset_result_o,
 
     output [`OPERAND_WIDTH-1:0]   mem_data_o,
     // to Data_Memery
@@ -66,13 +64,12 @@ module core_mem (
 
 assign pc_o = pc_i;
 assign instr_o = instr_i;
+assign snpc_o = snpc_i;
 assign imm_o = imm_i;
 
 assign rsd_idx_o = rsd_idx_i;
 
 assign mem2wb_alu_o = alu_i;
-
-assign pc_offset_result_o = pc_offset_result_i;
 
 assign mem_data_o = mem_data_i;
 

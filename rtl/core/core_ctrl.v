@@ -12,9 +12,8 @@ module core_ctrl (
     output idx_src,
     // use in EXU
     output [1:0] alu_op,
-    output alu_src,
+    output [1:0] alu_src,
     output alu_w_sext,
-    output pc_oprd_src,
     // use in MEM
     output mem_read,
     output mem_write,
@@ -86,13 +85,13 @@ and a9(auipc_format,  ~opcode[6], ~opcode[5],  opcode[4], ~opcode[3],  opcode[2]
 
 assign idx_src = jalr_format;
 assign alu_op = {i_format, r_format};
-or o1(alu_src, i_format, load_format, store_format);
+or o1(alu_src[1], i_format, load_format, store_format, auipc_format);
+assign alu_src[0] = auipc_format;
 assign mem_read = load_format | store_format;
 assign mem_write = store_format;
-assign pc_oprd_src = opcode[5];
-assign mem2reg[1] = opcode[2];
-or o2(mem2reg[0], load_format, jal_format, jalr_format, auipc_format);
-or o3(reg_write, r_format, i_format, load_format, jal_format, jalr_format, lui_format, auipc_format);
+or o3(mem2reg[1], jal_format, jalr_format, lui_format);
+or o3(mem2reg[0], load_format, jal_format, jalr_format);
+or o4(reg_write, r_format, i_format, load_format, jal_format, jalr_format, lui_format, auipc_format);
 
 // w-instructions alu_o control signal
 and a10(n1, instr_i[25], funct3[2]);

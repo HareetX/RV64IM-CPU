@@ -6,10 +6,14 @@ module core_if_id (
     input  [`CPU_PC_SIZE-1:0] pc_i,
     input  [`CPU_INSTR_SIZE-1:0] instr_i,
 
+    input  [`CPU_PC_SIZE-1:0] snpc_i,
+
     /* output_port */
     // main signals
     output [`CPU_PC_SIZE-1:0] pc_o,
     output [`CPU_INSTR_SIZE-1:0] instr_o,
+
+    output [`CPU_PC_SIZE-1:0] snpc_o,
 
     /* control_signals */
 
@@ -33,6 +37,14 @@ Reg #(`CPU_INSTR_SIZE, 0) u_Reg_instr(
     .din  (instr_i  ),
     .dout (instr_o  ),
     .wen  (1'b1     )
+);
+
+Reg #(`CPU_PC_SIZE, 0) u_Reg_snpc(
+    .clk  (clk     ),
+    .rst  (~rst_n  ),
+    .din  (snpc_i    ),
+    .dout (snpc_o    ),
+    .wen  (1'b1    )
 );
 
 endmodule //core_if_id
